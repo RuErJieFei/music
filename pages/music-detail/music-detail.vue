@@ -10,20 +10,20 @@
 
 		<!-- 歌曲图片 -->
 		<view class="flex align-center justify-center" style="height: 420rpx;">
-			<image src="../../static/music/p2.jpeg" lazy-load mode="widthFix" style="border-radius: 35rpx; box-shadow: 0 2rpx 6rpx 0;"></image>
+			<image :src="audioCover" lazy-load mode="heightFix" style="border-radius: 35rpx; box-shadow: 0 2rpx 6rpx 0; height: 420rpx; width: 400rpx;"></image>
 		</view>
 
 		<!-- 进度部分 -->
 		<view class="flex align-center justify-center font" style="color: #7a8388; height: 65rpx;">
-			<!-- 总时长 -->
-			<view>{{durationTime | formatTime}}</view>
+			<!-- 播放时刻 -->
+			<view>{{currentTime|formatTime}}</view>
 			<!-- 进度条部分 -->
 			<view style="width: 500rpx;">
 				<slider block-size="16" activeColor="#e48267" backgroundColor="#eef2f3" :max="durationTime" :value="currentTime"
 				 @change="sliderToPlay" @changing="sliderToPlay" />
 			</view>
-			<!-- 播放时刻 -->
-			<view>{{currentTime|formatTime}}</view>
+			<!-- 总时长 -->
+			<view>{{durationTime | formatTime}}</view>
 		</view>
 
 		<!-- 按钮部分 -->
@@ -33,7 +33,7 @@
 					<my-icon iconId="icon-shangyixiang" iconSize="85"></my-icon>
 				</view>
 				<view class="mx-5" @tap="PlayOrPause">
-					<my-icon iconId="icon-bofang1" iconSize="80"></my-icon>
+					<my-icon :iconId="playStatus ? 'icon-bofang' : 'icon-ziyuan'" iconSize="80"></my-icon>
 				</view>
 				<view class="ml-2" @tap="PreOrNext('next')">
 					<my-icon iconId="icon-xiayixiang" iconSize="85"></my-icon>
@@ -57,7 +57,7 @@
 		</view>
 
 		<!-- 歌手信息 -->
-		<view class="flex justify-between mt-3">
+		<view v-show="!listStatus" class="flex justify-between mt-3">
 			<view>
 				<view>
 					<text class="font">歌曲</text>
@@ -68,25 +68,20 @@
 					<text class="font-weight-bold">{{singerName}}</text>
 				</view>
 			</view>
-			<my-icon iconId="icon-jieshao" iconSize="65"></my-icon>
-		</view>
-
-		<view>
-			<view class="font-md pt-2">
-				歌手简介
+			<view @tap="showSingerSynosis">
+				<my-icon iconId="icon-jieshao" iconSize="65"></my-icon>
 			</view>
-			<view class="text-ellipsis w-100">{{singerSynopsis}}</view>
 		</view>
 
 		<!-- 播放列表 -->
-		<view class="fixed-bottom shadow p-2 " style="height: 100rpx; border-radius: 30rpx;">
+		<view v-show="listStatus" class="fixed-bottom shadow p-2 " style="height: 400rpx; border-radius: 30rpx;">
 			<view class="font-weight-bold" style="height: 60rpx">列表选项</view>
 			<scroll-view scroll-y style="height: 350rpx;">
 				<block v-for="(item, index) in audioList" :key="item.id">
 					<view class="flex align-center font px-2" style="height: 85rpx;" hover-class="bg-light">
 						<text class="flex-1 text-ellipsis">{{ item.audioName }}</text>
 						<text class="flex-1 text-ellipsis">{{ item.singerName }}</text>
-						<view class="flex-1 ml-3 flex align-center">
+						<view class="flex-1 ml-3 flex align-center" @tap="PlayOrPause">
 							<text class="mr-2">播放</text>
 							<my-icon iconId="icon-bofangsanjiaoxing" iconSize="40"></my-icon>
 						</view>
@@ -95,6 +90,16 @@
 			</scroll-view>
 		</view>
 
+		<uni-popup ref="popup">
+			<view class="align-center text-center">
+				<view class="bg-white" style="border-radius: 35rpx; height: 200rpx;">
+					<view class="font-md pt-2">
+						歌手简介
+					</view>
+					<view class="text-ellipsis w-100">{{singerSynopsis}}</view>
+				</view>
+			</view>
+		</uni-popup>
 	</view>
 </template>
 
@@ -115,7 +120,7 @@
 				nightStatus: false
 			}
 		},
-		comments: {
+		components: {
 			uniPopup
 		},
 		filters: {
@@ -141,7 +146,8 @@
 			...mapGetters([
 				'audioName',
 				'singerName',
-				'singerSynopsis'
+				'singerSynopsis',
+				'audioCover'
 			])
 		},
 		methods: {
@@ -156,6 +162,7 @@
 			},
 			// 展示歌手简介详情
 			showSingerSynosis() {
+				console.log(123)
 				this.$refs.popup.open()
 			}
 		}

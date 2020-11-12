@@ -1,7 +1,8 @@
 <template>
 	<view class="content">
-		<myAudio></myAudio>
-		<button type="default" @click="toDetail">to</button>
+		<view @click="toDetail">
+			<myAudio></myAudio>
+		</view>
 	</view>
 </template>
 

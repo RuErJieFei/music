@@ -10,7 +10,8 @@ export default {
 		currentPlayIndex: 0, //当前歌曲标识
 		durationTime: 0, //音频总时长
 		currentTime: 0, //音频播放时刻
-		audioList: []
+		audioList: [],
+		audioCover: '',
 	},
 	getters: {
 		//音频name
@@ -27,7 +28,12 @@ export default {
 		singerSynopsis(state) {
 			let curIndex = state.currentPlayIndex;
 			let singer = musics[curIndex].singer;
-			return singer.synopsis
+			return singer.synopsIs
+		},
+		audioCover(state) {
+			let curIndex = state.currentPlayIndex;
+			let cover = musics[curIndex].cover;
+			return cover
 		}
 	},
 	mutations: {
