@@ -29,23 +29,23 @@
 		<!-- 按钮部分 -->
 		<view>
 			<view class="flex align-center justify-center" style="padding-top: 60rpx;">
-				<view class="mr-3">
+				<view class="mr-3" @tap="PreOrNext('pre')">
 					<my-icon iconId="icon-shangyixiang" iconSize="85"></my-icon>
 				</view>
-				<view class="mx-5">
+				<view class="mx-5" @tap="PlayOrPause">
 					<my-icon iconId="icon-bofang1" iconSize="80"></my-icon>
 				</view>
-				<view class="ml-2">
+				<view class="ml-2" @tap="PreOrNext('next')">
 					<my-icon iconId="icon-xiayixiang" iconSize="85"></my-icon>
 				</view>
 			</view>
 
-			<view class="flex align-center justify-center font text-light-black" style="padding-top: 100rpx;">
-				<view class="flex flex-column align-center">
+			<view class="flex align-center justify-center font text-light-black" style="padding-top: 40rpx;">
+				<view class="flex flex-column align-center" @tap="changeStatus('listStatus')">
 					<my-icon iconId="icon-icon--" iconSize="60"></my-icon>
 					<text class="pt-1">播放列表</text>
 				</view>
-				<view class="flex flex-column align-center" style="padding: 0 80rpx;">
+				<view class="flex flex-column align-center" style="padding: 0 80rpx;" @tap="changeStatus('collectStatus')">
 					<my-icon iconId="icon-aixinfengxian" iconSize="60"></my-icon>
 					<text class="pt-1">收藏</text>
 				</view>
@@ -100,6 +100,7 @@
 
 <script>
 	import unit from '../../common/unit.js'
+	import uniPopup from '@/components/uni-ui/uni-popup/uni-popup.vue'
 	import {
 		mapState,
 		mapGetters,
@@ -113,6 +114,9 @@
 				collectStatus: false,
 				nightStatus: false
 			}
+		},
+		comments: {
+			uniPopup
 		},
 		filters: {
 			formatTime(num) {
@@ -142,10 +146,17 @@
 		},
 		methods: {
 			...mapActions([
-				'sliderToPlay'
+				'sliderToPlay',
+				'PlayOrPause',
+				'PreOrNext',
+				'selectPlay'
 			]),
 			changeStatus(statusType) {
 				this[statusType] = !this[statusType]
+			},
+			// 展示歌手简介详情
+			showSingerSynosis() {
+				this.$refs.popup.open()
 			}
 		}
 	}

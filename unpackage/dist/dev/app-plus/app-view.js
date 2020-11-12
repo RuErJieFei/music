@@ -1967,19 +1967,43 @@ var render = function() {
             [
               _c(
                 "v-uni-view",
-                { staticClass: _vm._$g(14, "sc"), attrs: { _i: 14 } },
+                {
+                  staticClass: _vm._$g(14, "sc"),
+                  attrs: { _i: 14 },
+                  on: {
+                    click: function($event) {
+                      return _vm.$handleViewEvent($event)
+                    }
+                  }
+                },
                 [_c("my-icon", { attrs: { _i: 15 } })],
                 1
               ),
               _c(
                 "v-uni-view",
-                { staticClass: _vm._$g(16, "sc"), attrs: { _i: 16 } },
+                {
+                  staticClass: _vm._$g(16, "sc"),
+                  attrs: { _i: 16 },
+                  on: {
+                    click: function($event) {
+                      return _vm.$handleViewEvent($event)
+                    }
+                  }
+                },
                 [_c("my-icon", { attrs: { _i: 17 } })],
                 1
               ),
               _c(
                 "v-uni-view",
-                { staticClass: _vm._$g(18, "sc"), attrs: { _i: 18 } },
+                {
+                  staticClass: _vm._$g(18, "sc"),
+                  attrs: { _i: 18 },
+                  on: {
+                    click: function($event) {
+                      return _vm.$handleViewEvent($event)
+                    }
+                  }
+                },
                 [_c("my-icon", { attrs: { _i: 19 } })],
                 1
               )
@@ -1990,13 +2014,21 @@ var render = function() {
             "v-uni-view",
             {
               staticClass: _vm._$g(20, "sc"),
-              staticStyle: { "padding-top": "100rpx" },
+              staticStyle: { "padding-top": "40rpx" },
               attrs: { _i: 20 }
             },
             [
               _c(
                 "v-uni-view",
-                { staticClass: _vm._$g(21, "sc"), attrs: { _i: 21 } },
+                {
+                  staticClass: _vm._$g(21, "sc"),
+                  attrs: { _i: 21 },
+                  on: {
+                    click: function($event) {
+                      return _vm.$handleViewEvent($event)
+                    }
+                  }
+                },
                 [
                   _c("my-icon", { attrs: { _i: 22 } }),
                   _c(
@@ -2012,7 +2044,12 @@ var render = function() {
                 {
                   staticClass: _vm._$g(24, "sc"),
                   staticStyle: { padding: "0 80rpx" },
-                  attrs: { _i: 24 }
+                  attrs: { _i: 24 },
+                  on: {
+                    click: function($event) {
+                      return _vm.$handleViewEvent($event)
+                    }
+                  }
                 },
                 [
                   _c("my-icon", { attrs: { _i: 25 } }),
