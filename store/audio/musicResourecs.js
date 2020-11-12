@@ -16,6 +16,14 @@ export default {
 				name: "Bandari",
 				synopsIs: "Andemund 乐团-团圆,CLANNAD(日本) - メグメル"
 			}
+		}, {
+			id: 20003,
+			name: 'bild',
+			src: 'http://music.163.com/song/media/outer/url?id=26643898.mp3',
+			singer: {
+				name: "Bandari",
+				synopsIs: "Andemund 乐团-团圆,CLANNAD(日本) - メグメル"
+			}
 		},
 	]
 }

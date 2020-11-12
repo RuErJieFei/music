@@ -9,7 +9,9 @@ export default {
 		playStatus: false, //播放与暂停标识
 		currentPlayIndex: 0, //当前歌曲标识
 		durationTime: 0, //音频总时长
-		currentTime: 0 //音频播放时刻
+		currentTime: 0, //音频播放时刻
+		// 播放列表
+		audioList: [],
 	},
 	getters: {
 		//音频name
@@ -22,7 +24,13 @@ export default {
 			let curIndex = state.currentPlayIndex;
 			let singer = musics[curIndex].singer;
 			return singer.name
-		}
+		},
+		// 歌手简介
+		singerSynopsis(state) {
+			let curIndex = state.currentPlayIndex;
+			let singer = musics[curIndex].singer;
+			return singer.synopsIs
+		},
 	},
 	mutations: {
 		// 监听
@@ -97,10 +105,12 @@ export default {
 		init({
 			commit
 		}) {
+			// 如果歌已经生成就直接返回
 			if (audio) {
 				return
 			}
-			audio = uni.createInnerAudioContext(); //实例化audio对象
+			// 实例化audio对象
+			audio = uni.createInnerAudioContext();
 			commit('addAudioEvent')
 		},
 		//播放与暂停
@@ -149,6 +159,7 @@ export default {
 				// commit('audioPlay')
 				clearTimeout(timeout);
 				timeout = setTimeout(() => commit('changeCurrentTime', time), 200)
+				// commit('changeCurrentTime', time)
 			}
 		}
 	}

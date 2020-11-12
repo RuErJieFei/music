@@ -29,11 +29,12 @@
 					<my-icon iconId="icon-xiayishou" iconSize="75" @my-click="PreOrNext('next')"></my-icon>
 				</view>
 			</view>
-		</view>
+		</view>`
 	</view>
 </template>
 
 <script>
+	// 辅助函数
 	import {
 		mapState,
 		mapGetters,
@@ -81,8 +82,9 @@
 		mounted() {
 			this.init()
 		},
+		// 销毁
 		destroyed() {
-			ths.description()
+			ths.destruction()
 		}
 	}
 </script>

@@ -1,6 +1,7 @@
 <template>
 	<view class="content">
 		<myAudio></myAudio>
+		<button type="default" @click="toDetail">to</button>
 	</view>
 </template>
 
@@ -19,7 +20,11 @@
 
 		},
 		methods: {
-
+			toDetail() {
+				uni.navigateTo({
+					url: '../music-detail/music-detail'
+				})
+			}
 		}
 	}
 </script>
