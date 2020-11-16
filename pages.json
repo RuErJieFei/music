@@ -40,6 +40,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/sort/sort",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
@@ -64,7 +73,7 @@
 			}, {
 				"iconPath": "static/tabbar/icons8-categorize.png",
 				"selectedIconPath": "static/tabbar/icons8-categorize_.png",
-				"pagePath": "pages/type/type",
+				"pagePath": "pages/sort/sort",
 				"text": "分类"
 			}, {
 				"iconPath": "static/tabbar/icons8-music_library.png",
